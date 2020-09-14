@@ -4,6 +4,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/spring-uricomponentsbuilder/pom.xml" />
+        <option value="$PROJECT_DIR$/BindingAListInThymeleaf/pom.xml" />
       </list>
     </option>
   </component>

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Baeldung.iml" filepath="$PROJECT_DIR$/.idea/Baeldung.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BindingAListInThymeleaf/BindingAListInThymeleaf.iml" filepath="$PROJECT_DIR$/BindingAListInThymeleaf/BindingAListInThymeleaf.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-uricomponentsbuilder/spring-uricomponentsbuilder.iml" filepath="$PROJECT_DIR$/spring-uricomponentsbuilder/spring-uricomponentsbuilder.iml" />
     </modules>
   </component>
