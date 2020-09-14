@@ -27,4 +27,18 @@ public class BBookController {
         return "books/allBooks";
     }
 
+    @GetMapping(value = "/create")
+    public String showCreateForm(Model model){
+
+        BBooksCreationDTO bBooksform = new BBooksCreationDTO();
+
+        for(int i = 1 ; i <= 3 ; i++){
+            bBooksform.addBook(new BBook());
+        }
+
+
+        model.addAttribute("form", bBooksform);
+        return "books/createBooksForm";
+    }
+
 }
