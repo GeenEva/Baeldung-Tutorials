@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -16,13 +15,14 @@ public class BBBookServiceImpl implements BBookService {
 
     @Override
     public List<BBook> findAll() {
+
         return new ArrayList<>(booksDB.values());
     }
 
     @Override
     public void saveAll(List<BBook> books) {
 
-        long nextId = nextID();
+        long nextId = getNextId();
 
         for (BBook book: books){
             if(book.getId() == 0){
@@ -32,10 +32,12 @@ public class BBBookServiceImpl implements BBookService {
 
         Map<Long, BBook> bookMap = books.stream()
                 .collect(Collectors.toMap(BBook::getId, Function.identity()));
+
+        booksDB.putAll(bookMap);
     }
 
 
-    private Long nextID(){
+    private Long getNextId(){
 
         return booksDB.keySet()
                 .stream()

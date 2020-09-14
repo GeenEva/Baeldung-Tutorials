@@ -1,10 +1,9 @@
 package eva.baeldung.BindingAListInThymeleaf;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,16 +12,12 @@ import java.util.List;
 @RequestMapping("/books")
 public class BBookController {
 
-    private final BBookService bBookService;
-
-    public BBookController(BBookService bBookService) {
-        this.bBookService = bBookService;
-    }
+    @Autowired
+    private BBookService bBookService;
 
 
     @GetMapping(value = "/all")
     public String showAll(Model model){
-        bBookService.findAll();
         model.addAttribute("books", bBookService.findAll());
         return "books/allBooks";
     }
@@ -39,6 +34,14 @@ public class BBookController {
 
         model.addAttribute("form", bBooksform);
         return "books/createBooksForm";
+    }
+
+    @PostMapping("/save")
+    public String saveBooks(@ModelAttribute BBooksCreationDTO form, Model model){
+
+        bBookService.saveAll(form.getBooks());
+        model.addAttribute("books", bBookService.findAll());
+        return "redirect:/books/all";
     }
 
 }
