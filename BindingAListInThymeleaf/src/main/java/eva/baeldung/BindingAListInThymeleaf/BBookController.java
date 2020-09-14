@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,7 +32,6 @@ public class BBookController {
             bBooksform.addBook(new BBook());
         }
 
-
         model.addAttribute("form", bBooksform);
         return "books/createBooksForm";
     }
@@ -42,6 +42,14 @@ public class BBookController {
         bBookService.saveAll(form.getBooks());
         model.addAttribute("books", bBookService.findAll());
         return "redirect:/books/all";
+    }
+
+    @GetMapping("/edit")
+    public String showEditForm(Model model){
+        List<BBook> bBooks = new ArrayList<>();
+        bBookService.findAll().iterator().forEachRemaining(bBooks::add);
+        model.addAttribute("form", new BBooksCreationDTO(bBooks));
+        return "books/editBbooksForm";
     }
 
 }
